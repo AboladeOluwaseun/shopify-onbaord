@@ -484,6 +484,7 @@ body > div:first-child {
   height: 0;
   overflow: hidden;
   /* display: none; */
+  
   opacity: 0;
   /* visibility: hidden; */
   transition: all 0.2s ease-in-out;
@@ -543,7 +544,7 @@ body > div:first-child {
   overflow: hidden;
 }
 .level-bar > .bar-loading {
-  width: 18px;
+  width: 0px;
   height: 4px;
   left: 0px;
   top: 0px;
@@ -588,8 +589,8 @@ body > div:first-child {
 
 .guide {
   width: 100%;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+ margin-top: 0.5rem;
+  /* padding-bottom: 0.5rem; */
   border-radius: 10px;
   display: inline-block;
   /* background: #F3F3F3; */
@@ -645,17 +646,21 @@ body > div:first-child {
   width: 26px;
   height: 26px;
   display: none;
-  opacity: 0; /* Initial opacity for the animation */
-  transition: opacity 0.3s ease-in-out; /* Add a transition for a smooth opacity animation */
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: center;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .visible-1 {
   display: none;
+  transform: scale(2);
 }
 
 .visible-2 {
   display: block;
   opacity: 1;
+  transform: scale(1); /* Initial scale when check icon is visible */
 }
 
 

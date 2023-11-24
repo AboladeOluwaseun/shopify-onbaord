@@ -23,12 +23,14 @@ function toggleSetupGuideCard() {
 
   setupGuideCardToggle.addEventListener("click", () => {
     setupGuideCard.classList.toggle("setup-guide-active");
-    console.log(setupGuideCard.clientHeight);
+    setupGuideCardToggle.style.display = "none";
+    arrowDown.style.display = "block";
   });
 
   arrowDown.addEventListener("click", () => {
-    setupGuideCard.style.display = "block";
+    setupGuideCard.classList.toggle("setup-guide-active");
     arrowDown.style.display = "none";
+    setupGuideCardToggle.style.display = "block";
   });
 }
 
@@ -124,6 +126,7 @@ function app() {
 function toggleGuideDetail() {
   const guideTitles = document.getElementsByClassName("guide-title");
   const guides = document.getElementsByClassName("guide");
+  
 
   for (let i = 0; i < guideTitles.length; i++) {
     guideTitles[i].querySelector(".title").addEventListener("click", () => {
@@ -157,6 +160,7 @@ function hideAllGuideDetails() {
   });
 }
 
+
 function handleCompleteSetupGuide() {
   const checkEllipse = document.querySelectorAll(".checkmark-circle");
   const checkmark = document.querySelectorAll(".check-mark");
@@ -167,65 +171,93 @@ function handleCompleteSetupGuide() {
       if (!checkEllipse[i].classList.contains("visible-1")) {
         // Mark current guide as completed with animation
         checkEllipse[i].classList.toggle("visible-1");
-        checkEllipse[i].style.transform = "scale(0)"; // Hide checkmark with animation
         checkmark[i].classList.toggle("visible-2");
-        checkmark[i].style.opacity = 1; // Show check icon with animation
 
         // Close the setup-detail of the selected guide
-        guides[i].querySelector('.guide-detail').style.display = "none";
+        guides[i].querySelector(".guide-detail").style.display = "none";
         guides[i].classList.remove("guide-active");
 
         // Check if all guides are now checked
-        const allGuidesChecked = Array.from(checkEllipse).every((el) => el.classList.contains("visible-1"));
+        const allGuidesChecked = Array.from(checkEllipse).every((el) =>
+          el.classList.contains("visible-1")
+        );
 
         // If all guides are checked, close the setup-details for all guides
         if (allGuidesChecked) {
           for (let k = 0; k < guides.length; k++) {
-            guides[k].querySelector('.guide-detail').style.display = "none";
+            guides[k].querySelector(".guide-detail").style.display = "none";
             guides[k].classList.remove("guide-active");
           }
         } else {
           // Find the next unchecked checkmark-circle
           let nextUncheckedIndex = (i + 1) % checkEllipse.length;
-          while (nextUncheckedIndex !== i && checkEllipse[nextUncheckedIndex].classList.contains("visible-1")) {
-            nextUncheckedIndex = (nextUncheckedIndex + 1) % checkEllipse.length;
+          while (
+            nextUncheckedIndex !== i &&
+            checkEllipse[nextUncheckedIndex].classList.contains("visible-1")
+          ) {
+            nextUncheckedIndex =
+              (nextUncheckedIndex + 1) % checkEllipse.length;
           }
 
           // Find the corresponding guide for the next unchecked checkmark-circle
-          let nextGuideIndex = parseInt(checkEllipse[nextUncheckedIndex].getAttribute("data-guide-index"));
+          let nextGuideIndex = parseInt(
+            checkEllipse[nextUncheckedIndex].getAttribute("data-guide-index")
+          );
 
           // Toggle the guide details visibility for the next unchecked guide
-          const nextGuideDetail = guides[nextGuideIndex].querySelector('.guide-detail');
+          const nextGuideDetail =
+            guides[nextGuideIndex].querySelector(".guide-detail");
           nextGuideDetail.style.display = "flex";
           guides[nextGuideIndex].classList.add("guide-active");
 
           // Hide all other guide details
           for (let k = 0; k < guides.length; k++) {
-            if (k !== nextGuideIndex && window.getComputedStyle(guides[k].querySelector('.guide-detail')).display === "flex") {
-              guides[k].querySelector('.guide-detail').style.display = "none";
+            if (
+              k !== nextGuideIndex &&
+              window.getComputedStyle(
+                guides[k].querySelector(".guide-detail")
+              ).display === "flex"
+            ) {
+              guides[k].querySelector(".guide-detail").style.display = "none";
               guides[k].classList.remove("guide-active");
             }
           }
         }
+
+        // Update the progress bar
+        updateProgressBar();
       }
     });
 
     checkmark[i].addEventListener("click", () => {
       checkEllipse[i].classList.toggle("visible-1");
-      checkEllipse[i].style.transform = "scale(1)"; // Show checkmark with animation
       checkmark[i].classList.toggle("visible-2");
-      checkmark[i].style.opacity = 0; // Hide check icon with animation
-      // guides[i].querySelector('.guide-detail').style.display = "flex";
+     
+      // Update the progress bar
+      updateProgressBar();
     });
   }
 }
 
+function updateProgressBar() {
+  const checkEllipse = document.querySelectorAll(".checkmark-circle");
+  const progressBar = document.querySelector(".bar-loading");
+  const progressText = document.querySelector(".setup-level-completed-text");
 
+  const checkedCount = Array.from(checkEllipse).filter((el) =>
+    el.classList.contains("visible-1")
+  ).length;
 
+  const totalGuides = checkEllipse.length;
+  const progressFraction = `${checkedCount}/${totalGuides}`;
 
-
+  const progressPercentage = (checkedCount / totalGuides) * 100;
+  progressBar.style.width = `${progressPercentage}%`;
+  progressText.innerHTML = `${progressFraction} completed`;
+}
 
 app();
 toggleSetupGuideCard();
 toggleGuideDetail();
 handleCompleteSetupGuide();
+
