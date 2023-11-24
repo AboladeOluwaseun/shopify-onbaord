@@ -20,24 +20,15 @@ function toggleSetupGuideCard() {
   const setupGuideCard = document.querySelector(".setup-guide-card");
   const setupGuideCardToggle = document.getElementById("arrow-up");
   const arrowDown = document.getElementById("arrow-down");
+
   setupGuideCardToggle.addEventListener("click", () => {
-    if (setupGuideCard.style.maxHeight) {
-      setupGuideCard.style.maxHeight = null;
-    } else {
-      setupGuideCard.style.maxHeight = setupGuideCard.scrollHeight + "px";
-      setupGuideCardToggle.style.display = "none";
-      arrowDown.style.display = "block";
-    }
+    setupGuideCard.classList.toggle("setup-guide-active");
+    console.log(setupGuideCard.clientHeight);
   });
 
   arrowDown.addEventListener("click", () => {
-    if (setupGuideCard.style.maxHeight) {
-      setupGuideCard.style.maxHeight = null;
-      setupGuideCardToggle.style.display = "block";
-      arrowDown.style.display = "none";
-    } else {
-      setupGuideCard.style.maxHeight = setupGuideCard.scrollHeight + "px";
-    }
+    setupGuideCard.style.display = "block";
+    arrowDown.style.display = "none";
   });
 }
 
@@ -130,20 +121,111 @@ function app() {
   menuTrigger.addEventListener("click", toggleMenu);
 }
 
-// function updateParentHeight() {
-//   const parentDiv = document.getElementById("customize-store ");
-//   const visibleElements = Array.from(parentDiv.children).filter(element => element.offsetHeight > 0);
+function toggleGuideDetail() {
+  const guideTitles = document.getElementsByClassName("guide-title");
+  const guides = document.getElementsByClassName("guide");
 
-//   // Calculate the total height of visible elements
-//   const totalHeight = visibleElements.reduce((acc, element) => acc + element.offsetHeight, 0);
+  for (let i = 0; i < guideTitles.length; i++) {
+    guideTitles[i].querySelector(".title").addEventListener("click", () => {
+      const guideDetail = guideTitles[i].nextElementSibling;
 
-//   // Set the height of the parent div
-//   parentDiv.style.height = totalHeight + "px";
-// }
+      // Check if the clicked guide title is the currently expanded one
+      const isGuideActive = guides[i].classList.contains("guide-active");
 
-// // Call the function whenever the visibility of the child elements changes
-// // For example, after toggling the display property of any child element
-// updateParentHeight();
+      // Hide all guide details
+      hideAllGuideDetails();
+
+      // Toggle guide detail visibility
+      if (!isGuideActive) {
+        guideDetail.style.display = "flex";
+        guides[i].classList.add("guide-active");
+      }
+    });
+  }
+}
+
+// Helper function to hide all guide details
+function hideAllGuideDetails() {
+  const guideDetails = document.querySelectorAll(".guide-detail");
+  guideDetails.forEach((guideDetail) => {
+    guideDetail.style.display = "none";
+  });
+
+  const guides = document.querySelectorAll(".guide");
+  guides.forEach((guide) => {
+    guide.classList.remove("guide-active");
+  });
+}
+
+function handleCompleteSetupGuide() {
+  const checkEllipse = document.querySelectorAll(".checkmark-circle");
+  const checkmark = document.querySelectorAll(".check-mark");
+  const guides = document.querySelectorAll(".guide");
+
+  for (let i = 0; i < checkEllipse.length; i++) {
+    checkEllipse[i].addEventListener("click", () => {
+      if (!checkEllipse[i].classList.contains("visible-1")) {
+        // Mark current guide as completed with animation
+        checkEllipse[i].classList.toggle("visible-1");
+        checkEllipse[i].style.transform = "scale(0)"; // Hide checkmark with animation
+        checkmark[i].classList.toggle("visible-2");
+        checkmark[i].style.opacity = 1; // Show check icon with animation
+
+        // Close the setup-detail of the selected guide
+        guides[i].querySelector('.guide-detail').style.display = "none";
+        guides[i].classList.remove("guide-active");
+
+        // Check if all guides are now checked
+        const allGuidesChecked = Array.from(checkEllipse).every((el) => el.classList.contains("visible-1"));
+
+        // If all guides are checked, close the setup-details for all guides
+        if (allGuidesChecked) {
+          for (let k = 0; k < guides.length; k++) {
+            guides[k].querySelector('.guide-detail').style.display = "none";
+            guides[k].classList.remove("guide-active");
+          }
+        } else {
+          // Find the next unchecked checkmark-circle
+          let nextUncheckedIndex = (i + 1) % checkEllipse.length;
+          while (nextUncheckedIndex !== i && checkEllipse[nextUncheckedIndex].classList.contains("visible-1")) {
+            nextUncheckedIndex = (nextUncheckedIndex + 1) % checkEllipse.length;
+          }
+
+          // Find the corresponding guide for the next unchecked checkmark-circle
+          let nextGuideIndex = parseInt(checkEllipse[nextUncheckedIndex].getAttribute("data-guide-index"));
+
+          // Toggle the guide details visibility for the next unchecked guide
+          const nextGuideDetail = guides[nextGuideIndex].querySelector('.guide-detail');
+          nextGuideDetail.style.display = "flex";
+          guides[nextGuideIndex].classList.add("guide-active");
+
+          // Hide all other guide details
+          for (let k = 0; k < guides.length; k++) {
+            if (k !== nextGuideIndex && window.getComputedStyle(guides[k].querySelector('.guide-detail')).display === "flex") {
+              guides[k].querySelector('.guide-detail').style.display = "none";
+              guides[k].classList.remove("guide-active");
+            }
+          }
+        }
+      }
+    });
+
+    checkmark[i].addEventListener("click", () => {
+      checkEllipse[i].classList.toggle("visible-1");
+      checkEllipse[i].style.transform = "scale(1)"; // Show checkmark with animation
+      checkmark[i].classList.toggle("visible-2");
+      checkmark[i].style.opacity = 0; // Hide check icon with animation
+      // guides[i].querySelector('.guide-detail').style.display = "flex";
+    });
+  }
+}
+
+
+
+
+
 
 app();
 toggleSetupGuideCard();
+toggleGuideDetail();
+handleCompleteSetupGuide();
