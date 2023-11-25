@@ -10,7 +10,6 @@ body {
 
 body > div:first-child {
   width: 100%;
-
 }
 
 /* Top bar styling starts */
@@ -20,7 +19,6 @@ body > div:first-child {
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 1rem;
-  /* width: 100%; */
 }
 #mobile-logo {
   display: block;
@@ -58,7 +56,7 @@ body > div:first-child {
   color: #b5b5b5;
   padding-left: 1.5rem;
   border: 1px solid #616161;
-  /* display: none; */
+ 
 }
 .search > input:focus .search > input:active {
   outline: none;
@@ -75,7 +73,6 @@ body > div:first-child {
   gap: 8px;
   display: inline-flex;
   position: relative;
-  /* background: red; */
 }
 /* notification dropdown */
 .notification-dropdown {
@@ -114,7 +111,6 @@ body > div:first-child {
 .filter {
   justify-content: flex-start;
   align-items: flex-start;
-  /* gap: 16px; */
   display: flex;
   cursor: pointer;
 }
@@ -139,10 +135,9 @@ body > div:first-child {
   word-wrap: break-word;
 }
 /* notification dropdown ends */
+
+
 /* user menu starts */
-#menu-wrapper {
-  /* max-height:384px; */
-}
 .menu {
   width: 260px;
   height: 0px;
@@ -159,20 +154,16 @@ body > div:first-child {
   gap: 4px;
   display: flex;
   visibility: hidden;
-  /* opacity: 0; */
   position: absolute;
   top: 4rem;
   right: 0.5rem;
   z-index: 4;
   transition: all 0.2s ease-out;
-  /* transition: max-height 0.3s ease; */
 }
 
 .menu-active {
   visibility: visible;
-  /* opacity: 1; */
   height: 384px;
-  /* top: 4rem; */
 }
 
 .menu-content {
@@ -391,8 +382,6 @@ body > div:first-child {
   font-family: Inter;
   font-weight: 500;
   line-height: 15.6px;
-  /* word-wrap: break-word; */
-  /* display: none; */
 }
 .user-name span:nth-child(2) {
   width: 28px;
@@ -413,24 +402,16 @@ body > div:first-child {
 .main {
   display: flex;
   justify-content: center;
-  /* background: green; */
-
-  /* margin: 0 auto; */
 }
 .main > div:first-child {
   width: 50rem;
-  /* width: 100%; */
-  /* margin: 0 auto; */
-  /* background: blue; */
 }
 /* selectplan panel starts here */
 .select-plan {
   margin-top: 1.5rem;
   width: 100%;
   background: #1a1a1a;
-  /* border-radius: 8px; */
   position: relative;
-  /* padding: 0 8px; */
 }
 .select-plan > div:first-child {
   padding: 0.75rem 0.5rem 0.75rem 1rem;
@@ -478,12 +459,17 @@ body > div:first-child {
   background: #f7f7f7;
   box-shadow: 0px -1px 0px 0px #b5b5b5 inset;
 }
-.select-plan-button-1:focus{
+
+.select-plan-button-1:active {
+  animation-name: btn-animation;
+  animation-duration: 200ms;
+  animation-timing-function: linear;
+}
+.select-plan-button-1:focus {
   border-radius: 0.375rem;
-border: 1px solid rgba(0, 0, 0, 0.10);
-outline: #005BD3;
-background: var(--White, #FFF);
-/* box-shadow: 0px 0px 0px 3px #005BD3, 0px 0px 0px 1px #FFF, 0px -1px 0px 0px #B5B5B5 inset; */
+  border: 1px solid #005bd3;
+  outline: #005bd3;
+  background: var(--White, #fff);
 }
 .select-plan-button-1 > div {
   color: #323232;
@@ -515,7 +501,6 @@ background: var(--White, #FFF);
   padding: 8px 0px;
   background: white;
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
-  /* border-radius: 18px; */
   border: 1px #dbdbdb solid;
   flex-direction: column;
   justify-content: space-between;
@@ -528,17 +513,11 @@ background: var(--White, #FFF);
 .setup-guide-card {
   height: 0;
   overflow: hidden;
-  /* display: none; */
-
   opacity: 0;
-  /* visibility: hidden; */
   transition: all 0.3s ease-in-out;
-  /* animation: fadeIn 0.3s ease-in-out; Add animation to the setup-guide-card */
 }
 .setup-guide-active {
   height: 100%;
-  /* visibility: visible; */
-  /* display: block; */
   opacity: 1;
 }
 .setup-guide-texts {
@@ -611,7 +590,6 @@ background: var(--White, #FFF);
   animation-name: btn-animation;
   animation-duration: 200ms;
   animation-timing-function: linear;
-  /* transition: btn-animation 0.5s ease; */
 }
 .accordion-button:hover {
   outline: none;
@@ -640,17 +618,14 @@ background: var(--White, #FFF);
   animation-timing-function: linear;
 }
 
-
 /* guide styling starts here */
 .guide {
   width: 100%;
   margin-top: 0.5rem;
   border-radius: 10px;
   display: inline-block;
-  
- 
 }
-.guide:focus{
+.guide:focus {
   outline: none;
   border: 1px solid #005bd3;
   border-radius: 0.375rem;
@@ -674,20 +649,15 @@ background: var(--White, #FFF);
   display: none;
   align-items: center;
   justify-content: space-between;
-  /* gap: 6rem; */
   padding-left: 2.5rem;
-  
   transition: all 0.2s ease-in-out;
 }
 
-
-
-
 .guide-active {
-  
   display: flex;
   background: #f3f3f3;
   padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   animation-name: fadeIn;
   animation-duration: 500ms;
   animation-timing-function: linear;
@@ -775,6 +745,7 @@ background: var(--White, #FFF);
   justify-content: flex-start;
   align-items: flex-start;
   gap: 16px;
+  /* width: 100%; */
   display: flex;
 }
 .title {
@@ -785,12 +756,8 @@ background: var(--White, #FFF);
   line-height: 18.2px;
   word-wrap: break-word;
 }
-.description {
-  /* display: none; */
-  /* visibility: hidden; */
-}
-.button {
-  /* display: none; */
+.description{
+
 }
 .description > span:first-child {
   color: #616161;
@@ -799,6 +766,7 @@ background: var(--White, #FFF);
   font-weight: 500;
   line-height: 18.2px;
   word-wrap: break-word;
+  
   /* display: none; */
 }
 .description > span:nth-child(2) {
@@ -816,8 +784,6 @@ background: var(--White, #FFF);
   gap: 16px;
   display: inline-flex;
   cursor: pointer;
-  /* visibility: hidden; */
-  /* display: none; */
 }
 .button > div:first-child {
   padding-left: 12px;
@@ -835,11 +801,9 @@ background: var(--White, #FFF);
   align-items: center;
   gap: 8px;
   display: flex;
-  /* display: none; */
 }
 .button > div:first-child:hover {
-  /* border: 1px solid rgba(0, 0, 0, 0.1); */
-  background: #2A2A2A;
+  background: #2a2a2a;
   box-shadow: 0px -1px 0px 0px #b5b5b5 inset;
 }
 .button-text {
@@ -854,8 +818,7 @@ background: var(--White, #FFF);
   width: 9.75906rem;
   height: 7.5rem;
   position: relative;
-  /* display: none; */
-  /* visibility: hidden; */
+  display: none;
 }
 .illustration > img {
   width: 156.14px;
@@ -891,7 +854,6 @@ background: var(--White, #FFF);
   }
   .menu {
     width: 320px;
-    /* height: 384px; */
   }
 
   .select-plan {
@@ -910,13 +872,9 @@ background: var(--White, #FFF);
     border-radius: 18px;
   }
   .guide-detail {
+    /* display: flex; */
     gap: 6rem;
   }
-  /* .customize-store {
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-end;
-    } */
   .illustration {
     display: block;
   }
