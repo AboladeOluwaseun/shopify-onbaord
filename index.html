@@ -294,31 +294,31 @@
             </div>
 
             <!-- user menu ends here -->
-            <div>
-              <div
-                aria-haspopup="true"
-                aria-expanded="false"
-                aria-controls="profile-menu-content"
-                id="profile-menu"
-                class="user-name menu-trigger"
-              >
-                <div>Davii Collections</div>
 
-                <div
-                  style="
-                    text-align: center;
-                    color: rgba(0, 0, 0, 0.4);
-                    font-size: 12px;
-                    font-family: Inter;
-                    font-weight: 500;
-                    line-height: 15.6px;
-                    word-wrap: break-word;
-                  "
-                >
-                  DC
-                </div>
-              </div>
-            </div>
+            <button
+              style="outline: none; border: none"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="profile-menu-content"
+              id="profile-menu"
+              class="user-name menu-trigger"
+            >
+              <span>Davii Collections</span>
+
+              <span
+                style="
+                  text-align: center;
+                  color: rgba(0, 0, 0, 0.4);
+                  font-size: 12px;
+                  font-family: Inter;
+                  font-weight: 500;
+                  line-height: 15.6px;
+                  word-wrap: break-word;
+                "
+              >
+                DC
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -363,7 +363,7 @@
 
           <!-- setupguide panel starts here -->
           <div class="SetupGuideClose">
-            <div class="setup-guide-open">
+            <div role="menu" class="setup-guide-open">
               <div
                 class=""
                 style="
@@ -436,13 +436,18 @@
                 </div>
               </div>
               <!-- customize store  -->
-              <div class="setup-guide-card">
-                <div style="padding: 0 0.5rem">
-                  <div id="guide" class="guide">
+              <div id="setup-guide-card" class="setup-guide-card">
+                <span id="checkbox-status" aria-live="polite"></span>
+                <div  style="padding: 0 0.5rem">
+                  <div tabindex="0" role="menuitem" id="guide" class="guide">
                     <div>
                       <div class="guide-title">
-                        <div class="ellipse">
+                        <button
+                          class="checkbox"
+                          aria-label="Customize your online store"
+                        >
                           <svg
+                            aria-hidden="true"
                             class="checkmark-circle"
                             data-guide-index="0"
                             xmlns="http://www.w3.org/2000/svg"
@@ -463,11 +468,29 @@
                             />
                           </svg>
                           <img
-                            class="check-mark"
+                            aria-hidden="true"
+                            class="check-mark hidden"
                             src="https://crushingit.tech/hackathon-assets/icon-checkmark-circle.svg"
                             alt="checked-guide"
                           />
-                        </div>
+                          <svg
+                            aria-hidden="true"
+                            class="loading-spinner hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="26"
+                            height="26"
+                            viewBox="0 0 28 28"
+                            fill="none"
+                          >
+                            <path
+                              d="M26 14C26 16.3734 25.2962 18.6935 23.9776 20.6668C22.6591 22.6402 20.7849 24.1783 18.5922 25.0866C16.3995 25.9948 13.9867 26.2324 11.6589 25.7694C9.33114 25.3064 7.19295 24.1635 5.51472 22.4853C3.83649 20.8071 2.6936 18.6689 2.23058 16.3411C1.76755 14.0133 2.00519 11.6005 2.91345 9.4078C3.8217 7.21509 5.35977 5.34094 7.33316 4.02236C9.30655 2.70379 11.6266 2 14 2"
+                              stroke="#000000"
+                              stroke-width="2.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
                         <div class="title">Customize your online store</div>
                       </div>
 
@@ -498,11 +521,15 @@
                   </div>
                 </div>
                 <div style="padding: 0 0.5rem">
-                  <div id="guide" class="guide">
+                  <div tabindex="1" role="menuitem"  id="guide" class="guide">
                     <div>
                       <div class="guide-title">
-                        <div class="ellipse">
+                        <button
+                          class="checkbox"
+                          aria-label="Add your first product"
+                        >
                           <svg
+                            aria-hidden="true"
                             class="checkmark-circle"
                             data-guide-index="1"
                             xmlns="http://www.w3.org/2000/svg"
@@ -523,11 +550,29 @@
                             />
                           </svg>
                           <img
-                            class="check-mark"
+                            aria-hidden="true"
+                            class="check-mark hidden"
                             src="https://crushingit.tech/hackathon-assets/icon-checkmark-circle.svg"
                             alt="checked-guide"
                           />
-                        </div>
+                          <svg
+                            aria-hidden="true"
+                            class="loading-spinner hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="26"
+                            height="26"
+                            viewBox="0 0 28 28"
+                            fill="none"
+                          >
+                            <path
+                              d="M26 14C26 16.3734 25.2962 18.6935 23.9776 20.6668C22.6591 22.6402 20.7849 24.1783 18.5922 25.0866C16.3995 25.9948 13.9867 26.2324 11.6589 25.7694C9.33114 25.3064 7.19295 24.1635 5.51472 22.4853C3.83649 20.8071 2.6936 18.6689 2.23058 16.3411C1.76755 14.0133 2.00519 11.6005 2.91345 9.4078C3.8217 7.21509 5.35977 5.34094 7.33316 4.02236C9.30655 2.70379 11.6266 2 14 2"
+                              stroke="#000000"
+                              stroke-width="2.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
                         <div class="title">Add your first product</div>
                       </div>
 
@@ -570,12 +615,16 @@
                   </div>
                 </div>
 
-                <div style="padding: 0 0.5rem">
-                  <div id="guide" class="guide">
+                <div  style="padding: 0 0.5rem">
+                  <div tabindex="2" role="menuitem" id="guide" class="guide">
                     <div>
                       <div class="guide-title">
-                        <div class="ellipse">
+                        <button
+                          class="checkbox"
+                          aria-label="Add a custom domain"
+                        >
                           <svg
+                            aria-hidden="true"
                             class="checkmark-circle"
                             data-guide-index="2"
                             xmlns="http://www.w3.org/2000/svg"
@@ -596,11 +645,29 @@
                             />
                           </svg>
                           <img
-                            class="check-mark"
+                            aria-hidden="true"
+                            class="check-mark hidden"
                             src="https://crushingit.tech/hackathon-assets/icon-checkmark-circle.svg"
                             alt="checked-guide"
                           />
-                        </div>
+                          <svg
+                            aria-hidden="true"
+                            class="loading-spinner hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="26"
+                            height="26"
+                            viewBox="0 0 28 28"
+                            fill="none"
+                          >
+                            <path
+                              d="M26 14C26 16.3734 25.2962 18.6935 23.9776 20.6668C22.6591 22.6402 20.7849 24.1783 18.5922 25.0866C16.3995 25.9948 13.9867 26.2324 11.6589 25.7694C9.33114 25.3064 7.19295 24.1635 5.51472 22.4853C3.83649 20.8071 2.6936 18.6689 2.23058 16.3411C1.76755 14.0133 2.00519 11.6005 2.91345 9.4078C3.8217 7.21509 5.35977 5.34094 7.33316 4.02236C9.30655 2.70379 11.6266 2 14 2"
+                              stroke="#000000"
+                              stroke-width="2.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
                         <div class="title">Add a custom domain</div>
                       </div>
 
@@ -632,12 +699,13 @@
                   </div>
                 </div>
 
-                <div style="padding: 0 0.5rem">
-                  <div id="guide" class="guide">
+                <div  style="padding: 0 0.5rem">
+                  <div tabindex="3"  role="menuitem" id="guide" class="guide">
                     <div>
                       <div class="guide-title">
-                        <div class="ellipse">
+                        <button class="checkbox" aria-label="Name your store">
                           <svg
+                            aria-hidden="true"
                             class="checkmark-circle"
                             data-guide-index="3"
                             xmlns="http://www.w3.org/2000/svg"
@@ -658,11 +726,29 @@
                             />
                           </svg>
                           <img
-                            class="check-mark"
+                            aria-hidden="true"
+                            class="check-mark hidden"
                             src="https://crushingit.tech/hackathon-assets/icon-checkmark-circle.svg"
                             alt="checked-guide"
                           />
-                        </div>
+                          <svg
+                            aria-hidden="true"
+                            class="loading-spinner hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="26"
+                            height="26"
+                            viewBox="0 0 28 28"
+                            fill="none"
+                          >
+                            <path
+                              d="M26 14C26 16.3734 25.2962 18.6935 23.9776 20.6668C22.6591 22.6402 20.7849 24.1783 18.5922 25.0866C16.3995 25.9948 13.9867 26.2324 11.6589 25.7694C9.33114 25.3064 7.19295 24.1635 5.51472 22.4853C3.83649 20.8071 2.6936 18.6689 2.23058 16.3411C1.76755 14.0133 2.00519 11.6005 2.91345 9.4078C3.8217 7.21509 5.35977 5.34094 7.33316 4.02236C9.30655 2.70379 11.6266 2 14 2"
+                              stroke="#000000"
+                              stroke-width="2.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
                         <div class="title">Name your store</div>
                       </div>
 
@@ -694,12 +780,16 @@
                   </div>
                 </div>
 
-                <div style="padding: 0 0.5rem">
-                  <div id="guide" class="guide">
+                <div  style="padding: 0 0.5rem">
+                  <div tabindex="4"  role="menuitem" id="guide" class="guide">
                     <div>
                       <div class="guide-title">
-                        <div class="ellipse">
+                        <button
+                          class="checkbox"
+                          aria-label="Set up a payment provider"
+                        >
                           <svg
+                            aria-hidden="true"
                             class="checkmark-circle"
                             data-guide-index="4"
                             xmlns="http://www.w3.org/2000/svg"
@@ -720,11 +810,29 @@
                             />
                           </svg>
                           <img
-                            class="check-mark"
+                            aria-hidden="true"
+                            class="check-mark hidden"
                             src="https://crushingit.tech/hackathon-assets/icon-checkmark-circle.svg"
                             alt="checked-guide"
                           />
-                        </div>
+                          <svg
+                            aria-hidden="true"
+                            class="loading-spinner hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="26"
+                            height="26"
+                            viewBox="0 0 28 28"
+                            fill="none"
+                          >
+                            <path
+                              d="M26 14C26 16.3734 25.2962 18.6935 23.9776 20.6668C22.6591 22.6402 20.7849 24.1783 18.5922 25.0866C16.3995 25.9948 13.9867 26.2324 11.6589 25.7694C9.33114 25.3064 7.19295 24.1635 5.51472 22.4853C3.83649 20.8071 2.6936 18.6689 2.23058 16.3411C1.76755 14.0133 2.00519 11.6005 2.91345 9.4078C3.8217 7.21509 5.35977 5.34094 7.33316 4.02236C9.30655 2.70379 11.6266 2 14 2"
+                              stroke="#000000"
+                              stroke-width="2.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
                         <div class="title">Set up a payment provider</div>
                       </div>
 

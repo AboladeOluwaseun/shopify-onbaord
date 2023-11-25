@@ -4,14 +4,13 @@
 body {
   width: 100vw;
   margin: 0 auto;
-  /* background: red; */
   display: flex;
   justify-content: center;
 }
 
 body > div:first-child {
   width: 100%;
-  /* margin: 0 auto; */
+
 }
 
 /* Top bar styling starts */
@@ -61,6 +60,15 @@ body > div:first-child {
   border: 1px solid #616161;
   /* display: none; */
 }
+.search > input:focus .search > input:active {
+  outline: none;
+  border: 2px solid #fff;
+}
+.search > input:hover {
+  outline: none;
+  border: 1px solid #e1e1e1;
+}
+
 .user {
   justify-content: flex-end;
   align-items: center;
@@ -86,7 +94,7 @@ body > div:first-child {
   position: absolute;
   z-index: 4;
   top: 4rem;
-  transition: all 0.2s ease-out;
+  animation: fadeIn 0.3s ease-in-out;
 }
 .notification-dropdown > div:first-child {
   align-self: stretch;
@@ -345,28 +353,48 @@ body > div:first-child {
   align-items: center;
   cursor: pointer;
 }
+.tag:active {
+  animation-name: btn-animation;
+  animation-duration: 200ms;
+  animation-timing-function: linear;
+}
 .user-name {
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 8px;
   padding-right: 2px;
-  background: none;
+  background: #303030;
   border-radius: 8px;
   align-items: center;
   gap: 8px;
   display: flex;
   cursor: pointer;
 }
-.user-name div:first-child {
+
+.user-name:hover {
+  background: #616161;
+}
+.user-name:focused {
+  background: #656266;
+  border: 1px solid #005bd3;
+}
+
+.user-name:active {
+  animation-name: btn-animation;
+  animation-duration: 200ms;
+  animation-timing-function: linear;
+}
+
+.user-name span:first-child {
   color: #e3e3e3;
   font-size: 12px;
   font-family: Inter;
   font-weight: 500;
   line-height: 15.6px;
-  word-wrap: break-word;
-  display: none;
+  /* word-wrap: break-word; */
+  /* display: none; */
 }
-.user-name div:nth-child(2) {
+.user-name span:nth-child(2) {
   width: 28px;
   padding-top: 9px;
   padding-bottom: 10px;
@@ -397,7 +425,7 @@ body > div:first-child {
 }
 /* selectplan panel starts here */
 .select-plan {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   width: 100%;
   background: #1a1a1a;
   /* border-radius: 8px; */
@@ -445,6 +473,18 @@ body > div:first-child {
   display: flex;
   cursor: pointer;
 }
+.select-plan-button-1:hover {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #f7f7f7;
+  box-shadow: 0px -1px 0px 0px #b5b5b5 inset;
+}
+.select-plan-button-1:focus{
+  border-radius: 0.375rem;
+border: 1px solid rgba(0, 0, 0, 0.10);
+outline: #005BD3;
+background: var(--White, #FFF);
+/* box-shadow: 0px 0px 0px 3px #005BD3, 0px 0px 0px 1px #FFF, 0px -1px 0px 0px #B5B5B5 inset; */
+}
 .select-plan-button-1 > div {
   color: #323232;
   font-size: 12px;
@@ -460,6 +500,11 @@ body > div:first-child {
   cursor: pointer;
   top: 0.75rem;
   right: 8px;
+}
+.select-plan-button-2:active {
+  animation-name: btn-animation;
+  animation-duration: 200ms;
+  animation-timing-function: linear;
 }
 /* select plan panel ends here */
 
@@ -484,10 +529,10 @@ body > div:first-child {
   height: 0;
   overflow: hidden;
   /* display: none; */
-  
+
   opacity: 0;
   /* visibility: hidden; */
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
   /* animation: fadeIn 0.3s ease-in-out; Add animation to the setup-guide-card */
 }
 .setup-guide-active {
@@ -550,6 +595,7 @@ body > div:first-child {
   top: 0px;
   position: absolute;
   background: #1a1a1a;
+  transition: width 0.3s ease-in-out;
 }
 
 .accordion-button {
@@ -562,7 +608,10 @@ body > div:first-child {
   outline: none;
   border: 1px solid #005bd3;
   border-radius: 0.375rem;
-  transition: btn-animation 0.5s ease;
+  animation-name: btn-animation;
+  animation-duration: 200ms;
+  animation-timing-function: linear;
+  /* transition: btn-animation 0.5s ease; */
 }
 .accordion-button:hover {
   outline: none;
@@ -576,6 +625,7 @@ body > div:first-child {
   cursor: pointer;
   position: relative;
 }
+
 #arrow-down:hover {
   outline: none;
   background: #f0f0f0;
@@ -585,28 +635,32 @@ body > div:first-child {
   outline: none;
   border: 1px solid #005bd3;
   border-radius: 0.375rem;
+  animation-name: btn-animation;
+  animation-duration: 200ms;
+  animation-timing-function: linear;
 }
 
+
+/* guide styling starts here */
 .guide {
   width: 100%;
- margin-top: 0.5rem;
-  /* padding-bottom: 0.5rem; */
+  margin-top: 0.5rem;
   border-radius: 10px;
   display: inline-block;
-  /* background: #F3F3F3; */
+  
+ 
+}
+.guide:focus{
+  outline: none;
+  border: 1px solid #005bd3;
+  border-radius: 0.375rem;
 }
 
-.guide-active {
-  background: #f3f3f3;
-  padding-top: 0.5rem;
-  
-}
 .guide > div:first-child {
   flex: 1 1 0;
   justify-content: space-between;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
   display: inline-flex;
 }
 .guide-title {
@@ -622,18 +676,38 @@ body > div:first-child {
   justify-content: space-between;
   /* gap: 6rem; */
   padding-left: 2.5rem;
+  
   transition: all 0.2s ease-in-out;
 }
 
-.guide-active  {
-  display: flex;
 
+
+
+.guide-active {
+  
+  display: flex;
+  background: #f3f3f3;
+  padding-top: 0.5rem;
+  animation-name: fadeIn;
+  animation-duration: 500ms;
+  animation-timing-function: linear;
 }
-/* .guide-detail-active{
-  display: ;
-} */
-.ellipse {
+
+@keyframes fadeIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.checkbox {
   cursor: pointer;
+  background: transparent;
+  border: none;
 }
 
 .checkmark-circle {
@@ -645,24 +719,53 @@ body > div:first-child {
 .check-mark {
   width: 26px;
   height: 26px;
-  display: none;
-  opacity: 0;
-  transform: scale(0);
-  transform-origin: center;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  animation-name: zoom-in-spin;
+  animation-duration: 300ms;
+  animation-timing-function: linear;
 }
 
+.loading-spinner {
+  animation-duration: 1000ms;
+  animation-name: spin;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.hidden {
+  display: none;
+}
 .visible-1 {
   display: none;
   transform: scale(2);
 }
 
-.visible-2 {
-  display: block;
-  opacity: 1;
-  transform: scale(1); /* Initial scale when check icon is visible */
-}
+@keyframes zoom-in-spin {
+  from {
+    transform: scale(0) rotate(270deg);
+    opacity: 0;
+  }
 
+  to {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes btn-animation {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
 
 .detail {
   flex: 1 1 0;
@@ -733,6 +836,11 @@ body > div:first-child {
   gap: 8px;
   display: flex;
   /* display: none; */
+}
+.button > div:first-child:hover {
+  /* border: 1px solid rgba(0, 0, 0, 0.1); */
+  background: #2A2A2A;
+  box-shadow: 0px -1px 0px 0px #b5b5b5 inset;
 }
 .button-text {
   color: #f6f3f6;
